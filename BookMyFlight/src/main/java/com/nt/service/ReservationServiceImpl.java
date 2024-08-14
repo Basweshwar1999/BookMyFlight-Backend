@@ -42,6 +42,7 @@ public class ReservationServiceImpl implements IReservationService {
 			Flight flight=flightDetails.get();
 			if(flight.getAvailableSeats()<travellerList.size()) return "Not Enough Seats";
 			
+		   try {
 			for(int i=0;i<travellerList.size();i++) {
 				Traveller traveller=new Traveller();
 				traveller.setName(travellerList.get(i).getName());
@@ -54,6 +55,9 @@ public class ReservationServiceImpl implements IReservationService {
 				reservation.setFlight(flightDetails.get());
 				repo.save(reservation);
 			}
+		   }catch(Exception e) {
+			   return "Something went wrong";
+		   }
 
 			
 			flight.setAvailableSeats(flight.getAvailableSeats()-travellerList.size());
