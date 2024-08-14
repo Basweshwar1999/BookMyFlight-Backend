@@ -1,5 +1,9 @@
 package com.nt.service;
 
+import java.sql.Date;
+import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +23,7 @@ public class FlightServiceImpl implements IFlightService {
 	
 	@Autowired
 	private IAirportRepo airportRepo;
-	
+
 	@Override
 	public Flight scheduleNewFlight(FlightDTO flightDetails) {
 		Optional<Airport> originAirport=airportRepo.findById(Integer.parseInt(flightDetails.getOriginAirportId()));
@@ -42,5 +46,44 @@ public class FlightServiceImpl implements IFlightService {
 		
 		return returnFlightDetails;
 	}
+
+	@Override
+    public List<Flight> checkFlights(String from, String to, Date date) {
+		
+		List<Flight> allFlights=(List<Flight>) repo.findAll();
+		
+		List<Flight> availableFlights=new ArrayList<>();
+		
+		for(int i=0;i<allFlights.size();i++) {
+			Flight flight=allFlights.get(i);
+			Airport originAirportDetails=flight.getOriginAirport();
+			Airport destinationAirportDetails=flight.getDestinationAirport();
+			
+			if(originAirportDetails.getCity().equalsIgnoreCase(from) && destinationAirportDetails.getCity().equalsIgnoreCase(to)) {
+				Timestamp timeStamp=flight.getDepartureDate();
+				int departureDay=timeStamp.getDate();
+				int departureMonth=timeStamp.getMonth();
+				int departureYear=timeStamp.getYear();
+			
+				int requestDate=date.getDate();
+				int requestMonth=date.getMonth();
+				int requestYear=date.getYear();
+				
+				if(departureYear==requestYear && departureMonth==requestMonth && departureDay==requestDate)
+				availableFlights.add(flight);
+				
+				System.out.println(departureDay);
+				System.out.println(departureMonth);
+				System.out.println(departureYear);
+				System.out.println("-----");
+				System.out.println(requestDate);
+				System.out.println(requestMonth);
+				System.out.println(requestYear);
+			}
+		}
+		System.out.println(availableFlights);
+       return availableFlights;
+ 
+    }
 
 }
