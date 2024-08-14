@@ -15,4 +15,5 @@ public class FlightDTO {
 	private String originAirportId;
 	private LocalDateTime departureDate;
 	private Double price;
+	private Integer availabeSeats;
 }

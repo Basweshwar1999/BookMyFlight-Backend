@@ -40,5 +40,6 @@ public class Flight {
 	private LocalDateTime departureDate;
 
 	private Double price;
+	private Integer availableSeats;
 
 }
