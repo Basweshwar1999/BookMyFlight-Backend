@@ -15,9 +15,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.nt.model.UserDetails;
 import com.nt.service.IUserDetailsService;
 
-@RestController("RestController")
-@RequestMapping
-public class MainRestController {
+@RestController("userRestController")
+@RequestMapping("/user")
+public class UserRestController {
 
 	@Autowired
 	private IUserDetailsService userDetailsService;

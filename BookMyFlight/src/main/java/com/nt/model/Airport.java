@@ -12,22 +12,20 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name="userDetails")
+@Table(name="airport")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserDetails {
-	
+public class Airport {
+
 	@Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_seq")
-    @SequenceGenerator(name = "user_seq", sequenceName = "USER_SEQ", allocationSize = 1)
-    @Column(name = "userId")
-    private Integer userId;
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_seq")
+	@SequenceGenerator(name = "user_seq", sequenceName = "USER_SEQ", allocationSize = 1)
+	@Column(name = "airportId")
+	private Integer airportId;
+
 	private String name;
-	@Column(unique=true)
-	private String email;
-	private String mobNo;
-	private String password;
-	private String role;
+	private String country;
+	private String city;
 
 }
