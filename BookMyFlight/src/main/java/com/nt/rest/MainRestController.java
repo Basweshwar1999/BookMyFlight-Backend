@@ -16,11 +16,16 @@ import com.nt.model.UserDetails;
 import com.nt.service.IUserDetailsService;
 
 @RestController("RestController")
-@RequestMapping("/save")
+@RequestMapping
 public class MainRestController {
 
 	@Autowired
 	private IUserDetailsService userDetailsService;
+	
+	@GetMapping("/")
+	public ResponseEntity<String> returnSuccessMessage(){
+		return new ResponseEntity<String>("Success",HttpStatus.OK);
+	}
 
 	@PostMapping("/registerUser")
 	public ResponseEntity<UserDetails> saveUserDetails(@RequestBody UserDetails userDetails){
