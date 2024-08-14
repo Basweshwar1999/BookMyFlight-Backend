@@ -19,10 +19,10 @@ public class ReservationRestController {
 	private IReservationService reservationService;
 	
 	@PostMapping("/bookFlight")
-  public ResponseEntity<Boolean> bookFlight(@RequestBody ReservationDTO reservationDetails){
-	 boolean status=reservationService.bookFlightSeats(reservationDetails);
-	 if(status==false) return new ResponseEntity<Boolean>(status, HttpStatus.INTERNAL_SERVER_ERROR);
-		return new ResponseEntity<Boolean>(status, HttpStatus.OK);
+  public ResponseEntity<String> bookFlight(@RequestBody ReservationDTO reservationDetails){
+	 String message=reservationService.bookFlightSeats(reservationDetails);
+	  if(!message.equalsIgnoreCase("success")) return new ResponseEntity<String>(message, HttpStatus.INTERNAL_SERVER_ERROR);
+		return new ResponseEntity<String>(message, HttpStatus.OK);
 	  
   }
 

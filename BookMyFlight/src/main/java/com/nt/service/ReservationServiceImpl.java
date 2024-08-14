@@ -31,13 +31,16 @@ public class ReservationServiceImpl implements IReservationService {
 	@Autowired
 	private ITravellerRepo travellerRepo;
 	
+	
 	@Override
-	public boolean bookFlightSeats(ReservationDTO reservationDetails) {
+	public String bookFlightSeats(ReservationDTO reservationDetails) {
 		Optional<UserDetails> userDetails=userRepo.findById(reservationDetails.getUserId());
 		Optional<Flight> flightDetails=flightRepo.findById(reservationDetails.getFlightId());
-		Reservation returnReservationDetails=null;
 		if(userDetails.isPresent() && flightDetails.isPresent()) {
+			
 			List<Traveller> travellerList=reservationDetails.getTravellerList();
+			Flight flight=flightDetails.get();
+			if(flight.getAvailableSeats()<travellerList.size()) return "Not Enough Seats";
 			
 			for(int i=0;i<travellerList.size();i++) {
 				Traveller traveller=new Traveller();
@@ -52,14 +55,14 @@ public class ReservationServiceImpl implements IReservationService {
 				repo.save(reservation);
 			}
 
-			try {
-			}catch(Exception e){
-				return false;
-			}
+			
+			flight.setAvailableSeats(flight.getAvailableSeats()-travellerList.size());
+			flightRepo.save(flight);
+			
 		}else {
-			return false;
+			return "error";
 		}
-		return true;
+		return "success";
 	}
 
 }
