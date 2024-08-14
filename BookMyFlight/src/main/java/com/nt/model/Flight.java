@@ -1,5 +1,5 @@
 package com.nt.model;
-
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
 import jakarta.persistence.CascadeType;
@@ -23,23 +23,23 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Flight {
-	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_seq")
-	@SequenceGenerator(name = "user_seq", sequenceName = "USER_SEQ", allocationSize = 1)
-	@Column(name = "flightId")
-	private Integer flightId;
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "flight_seq")
+    @SequenceGenerator(name = "flight_seq", sequenceName = "FLIGHT_SEQ", allocationSize = 1)
+    @Column(name = "flightId")
+    private Integer flightId;
 
-	@ManyToOne(targetEntity=Airport.class,fetch=FetchType.LAZY, cascade={CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
-	@JoinColumn(name="originAirport", referencedColumnName="airportId")
-	private Airport originAirport;
-	
-	@ManyToOne(targetEntity=Airport.class,fetch=FetchType.LAZY, cascade={CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
-	@JoinColumn(name="destinationAirport", referencedColumnName="airportId")
-	private Airport destinationAirport;
-	
-	private LocalDateTime departureDate;
+    @ManyToOne(targetEntity=Airport.class,fetch=FetchType.LAZY, cascade={CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
+    @JoinColumn(referencedColumnName="airportId")
+    private Airport originAirport;
+     
+    @ManyToOne(targetEntity=Airport.class,fetch=FetchType.LAZY, cascade={CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
+    @JoinColumn(referencedColumnName="airportId")
+    private Airport destinationAirport;
+    
+    private Timestamp departureDate;
 
-	private Double price;
-	private Integer availableSeats;
-
+    private Double price;
+    private Integer availableSeats;
 }
+

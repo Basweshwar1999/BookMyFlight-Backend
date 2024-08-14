@@ -1,5 +1,6 @@
 package com.nt.dto;
 
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
 import lombok.AllArgsConstructor;
@@ -13,7 +14,7 @@ public class FlightDTO {
 
 	private String destinationAirportId;
 	private String originAirportId;
-	private LocalDateTime departureDate;
+	private Timestamp departureDate;
 	private Double price;
 	private Integer availabeSeats;
 }
