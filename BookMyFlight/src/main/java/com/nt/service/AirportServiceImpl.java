@@ -1,5 +1,7 @@
 package com.nt.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +23,12 @@ public class AirportServiceImpl implements IAirportService {
 			return null;
 		}
 		return airport;
+	}
+
+	@Override
+	public List<Airport> getAllAirport() {
+		List<Airport> allAirportList=(List<Airport>) repo.findAll();
+		return allAirportList;
 	}
 
 }

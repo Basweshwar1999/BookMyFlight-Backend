@@ -12,6 +12,7 @@ public class FlightDTO {
 	private Timestamp departureDate;
 	private Double price;
 	private Integer availabeSeats;
+	
 	public String getDestinationAirportId() {
 		return destinationAirportId;
 	}

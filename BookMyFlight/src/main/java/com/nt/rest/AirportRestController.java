@@ -1,8 +1,11 @@
 package com.nt.rest;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,6 +26,12 @@ public class AirportRestController {
 		Airport airport=airportService.addAirport(airportDetails);
 		if(airport==null) return new ResponseEntity<Airport>(airport, HttpStatus.INTERNAL_SERVER_ERROR);
 		return new ResponseEntity<Airport>(airport, HttpStatus.OK);
+	}
+	
+	@GetMapping("/getAllAirport")
+	public ResponseEntity<List<Airport>> getAllAirport(){
+		List<Airport> airportList=airportService.getAllAirport();
+		return new ResponseEntity<List<Airport>>(airportList, HttpStatus.OK);
 	}
 
 }

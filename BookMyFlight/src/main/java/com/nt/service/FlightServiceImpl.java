@@ -72,13 +72,6 @@ public class FlightServiceImpl implements IFlightService {
 				if(departureYear==requestYear && departureMonth==requestMonth && departureDay==requestDate)
 				availableFlights.add(flight);
 				
-				System.out.println(departureDay);
-				System.out.println(departureMonth);
-				System.out.println(departureYear);
-				System.out.println("-----");
-				System.out.println(requestDate);
-				System.out.println(requestMonth);
-				System.out.println(requestYear);
 			}
 		}
 		System.out.println(availableFlights);
