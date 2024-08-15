@@ -37,6 +37,7 @@ public class FlightServiceImpl implements IFlightService {
 			flight.setPrice(flightDetails.getPrice());
 			flight.setDepartureDate(flightDetails.getDepartureDate());
 			flight.setAvailableSeats(flightDetails.getAvailabeSeats());
+			flight.setFlightName(flightDetails.getFlightName());
 			try {
 			returnFlightDetails=repo.save(flight);
 			}catch(Exception e){return null;}

@@ -7,12 +7,20 @@ import java.sql.Timestamp;
 //@NoArgsConstructor
 public class FlightDTO {
 
+	private String flightName;
 	private String destinationAirportId;
 	private String originAirportId;
 	private Timestamp departureDate;
 	private Double price;
 	private Integer availabeSeats;
 	
+	
+	public String getFlightName() {
+		return flightName;
+	}
+	public void setFlightName(String flightName) {
+		this.flightName = flightName;
+	}
 	public String getDestinationAirportId() {
 		return destinationAirportId;
 	}

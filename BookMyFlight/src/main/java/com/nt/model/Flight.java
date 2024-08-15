@@ -29,6 +29,7 @@ public class Flight {
     @Column(name = "flightId")
     private Integer flightId;
 
+    private String flightName;
     @ManyToOne(targetEntity=Airport.class,fetch=FetchType.LAZY, cascade={CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
     @JoinColumn(referencedColumnName="airportId")
     @JsonIgnore
@@ -43,6 +44,13 @@ public class Flight {
 
     private Double price;
     private Integer availableSeats;
+    
+	public String getFlightName() {
+		return flightName;
+	}
+	public void setFlightName(String flightName) {
+		this.flightName = flightName;
+	}
 	public Integer getFlightId() {
 		return flightId;
 	}
