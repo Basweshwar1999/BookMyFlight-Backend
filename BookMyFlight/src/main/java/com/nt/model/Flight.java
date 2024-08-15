@@ -15,15 +15,12 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name="flight")
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
+//@Data
+//@AllArgsConstructor
+//@NoArgsConstructor
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Flight {
     @Id
@@ -46,5 +43,43 @@ public class Flight {
 
     private Double price;
     private Integer availableSeats;
+	public Integer getFlightId() {
+		return flightId;
+	}
+	public void setFlightId(Integer flightId) {
+		this.flightId = flightId;
+	}
+	public Airport getOriginAirport() {
+		return originAirport;
+	}
+	public void setOriginAirport(Airport originAirport) {
+		this.originAirport = originAirport;
+	}
+	public Airport getDestinationAirport() {
+		return destinationAirport;
+	}
+	public void setDestinationAirport(Airport destinationAirport) {
+		this.destinationAirport = destinationAirport;
+	}
+	public Timestamp getDepartureDate() {
+		return departureDate;
+	}
+	public void setDepartureDate(Timestamp departureDate) {
+		this.departureDate = departureDate;
+	}
+	public Double getPrice() {
+		return price;
+	}
+	public void setPrice(Double price) {
+		this.price = price;
+	}
+	public Integer getAvailableSeats() {
+		return availableSeats;
+	}
+	public void setAvailableSeats(Integer availableSeats) {
+		this.availableSeats = availableSeats;
+	}
+    
+    
 }
 
