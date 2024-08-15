@@ -12,6 +12,7 @@ public class ReservationDTO {
 	private Integer userId;
 	private Integer flightId;
 	private List<Traveller> travellerList;
+	
 	public Integer getUserId() {
 		return userId;
 	}

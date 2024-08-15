@@ -1,5 +1,6 @@
 package com.nt.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -67,6 +68,22 @@ public class ReservationServiceImpl implements IReservationService {
 			return "error";
 		}
 		return "success";
+	}
+
+
+	@Override
+	public List<Reservation> getReservationDetailsByUserId(Integer userId) {
+		List<Reservation> allReservation=(List<Reservation>) repo.findAll();
+		List<Reservation> userReservations=new ArrayList<>();
+		
+		for(int i=0;i<allReservation.size();i++) {
+			Integer uid=allReservation.get(i).getUser().getUserId();
+			if(uid==userId) {
+				userReservations.add(allReservation.get(i));
+			}
+		}
+		
+		return userReservations;
 	}
 
 }

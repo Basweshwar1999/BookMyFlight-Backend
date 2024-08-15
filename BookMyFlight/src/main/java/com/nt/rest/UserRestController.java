@@ -1,5 +1,6 @@
 package com.nt.rest;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.nt.model.Reservation;
 import com.nt.model.UserDetails;
+import com.nt.service.IReservationService;
 import com.nt.service.IUserDetailsService;
 
 @RestController("userRestController")
@@ -21,6 +24,8 @@ public class UserRestController {
 
 	@Autowired
 	private IUserDetailsService userDetailsService;
+	@Autowired
+	private IReservationService reservationService;
 	
 	@GetMapping("/")
 	public ResponseEntity<String> returnSuccessMessage(){
@@ -50,6 +55,11 @@ public class UserRestController {
 		return new ResponseEntity<Boolean>(userDetailsService.updateUserPasswordById(userId, password), HttpStatus.OK);
 	}
 
+	@GetMapping("/checkMyBooking")
+	public ResponseEntity<List<Reservation>> checkBookings(@RequestParam Integer userId){
+		List<Reservation> userReservations=reservationService.getReservationDetailsByUserId(userId);
+		return new ResponseEntity<List<Reservation>>(userReservations, HttpStatus.OK);
+	}
 
 
 }

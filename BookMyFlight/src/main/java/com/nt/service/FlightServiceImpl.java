@@ -75,7 +75,6 @@ public class FlightServiceImpl implements IFlightService {
 				
 			}
 		}
-		System.out.println(availableFlights);
        return availableFlights;
  
     }

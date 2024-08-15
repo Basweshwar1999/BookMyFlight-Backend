@@ -1,5 +1,8 @@
 package com.nt.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -17,6 +20,7 @@ import jakarta.persistence.Table;
 //@Data
 //@AllArgsConstructor
 //@NoArgsConstructor
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Reservation {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_seq")
@@ -26,14 +30,17 @@ public class Reservation {
 	
  	@ManyToOne(targetEntity=UserDetails.class,fetch=FetchType.LAZY, cascade={CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
 	@JoinColumn(referencedColumnName="userId")
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 	private UserDetails user;
 	
  	@ManyToOne(targetEntity=Flight.class,fetch=FetchType.LAZY, cascade={CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
 	@JoinColumn(referencedColumnName="flightId")
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Flight flight;
  	
  	@ManyToOne(targetEntity=Traveller.class,fetch=FetchType.LAZY, cascade={CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
 	@JoinColumn(referencedColumnName="travellerId")
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Traveller traveller;
 
 	public Integer getReservationId() {

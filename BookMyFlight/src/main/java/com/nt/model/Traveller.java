@@ -23,6 +23,7 @@ public class Traveller {
 	private String passportNo;
 	private String gender;
 	private Integer age;
+	
 	public Integer getTravellerId() {
 		return travellerId;
 	}

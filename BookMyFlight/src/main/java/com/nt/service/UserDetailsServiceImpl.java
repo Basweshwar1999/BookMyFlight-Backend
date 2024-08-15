@@ -1,12 +1,14 @@
 package com.nt.service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.nt.model.Reservation;
 import com.nt.model.UserDetails;
 import com.nt.repository.IUserDetailsRepo;
 
@@ -15,6 +17,7 @@ public class UserDetailsServiceImpl implements IUserDetailsService {
 
 	@Autowired
 	private IUserDetailsRepo repo;
+	
 	@Override
 	public UserDetails saveUserDetails(UserDetails userDetails) {
 		UserDetails user=null;
@@ -70,5 +73,6 @@ public class UserDetailsServiceImpl implements IUserDetailsService {
 		}
 		return true;
 	}
+
 
 }
